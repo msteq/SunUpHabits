@@ -49,7 +49,3 @@
 | CSSフレームワーク | Tailwind, daisyUI |
 | データベース | PostqreSQL |
 | インフラ | Render |
-
-## 画面遷移図
-
-## ER図
