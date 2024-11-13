@@ -49,6 +49,7 @@
 | CSSフレームワーク | Tailwind, daisyUI |
 | データベース | PostqreSQL |
 | インフラ | Render |
+| 開発環境 | Docker |
 
 ## 画面遷移図
 https://www.figma.com/design/izVMYDOrBbco6wC9yqtoxc/%E7%84%A1%E9%A1%8C?node-id=0-1&m=dev&t=rusuccY7ZeOl5VgO-1
