@@ -3,7 +3,9 @@
   "private": true,
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --minify --sourcemap --outdir=app/assets/builds",
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
+    "watch": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --watch",
+    "watch:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --watch"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",

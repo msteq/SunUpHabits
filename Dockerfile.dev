@@ -1,0 +1,56 @@
+FROM ruby:3.3.0
+
+# 環境変数の設定
+ENV LANG C.UTF-8
+ENV TZ Asia/Tokyo
+ENV BUNDLE_APP_CONFIG /myapp/.bundle
+
+# 必要なパッケージのインストール
+RUN apt-get update -qq \
+  && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    curl \
+    gnupg \
+    build-essential \
+    libpq-dev \
+    nodejs \
+    vim \
+  && rm -rf /var/lib/apt/lists/*
+
+# Yarnの公式リポジトリを追加して最新バージョンをインストール
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+  && apt-get update && apt-get install -y yarn
+
+# ユーザーの作成
+ARG UID=1000
+RUN useradd -m -u $UID rails
+
+# アプリケーションディレクトリの作成
+RUN mkdir /myapp
+WORKDIR /myapp
+
+# Gemのインストール用にGemfileとGemfile.lockをコピー
+COPY Gemfile Gemfile.lock /myapp/
+
+# Bundlerのインストール
+RUN gem install bundler
+
+# 依存関係のインストール
+RUN bundle install
+
+# Yarn依存関係のインストール
+COPY package.json yarn.lock /myapp/
+RUN yarn install
+
+# アプリケーションコードをコピー
+COPY . /myapp
+
+# 権限の設定
+RUN chown rails:rails -R /myapp
+
+# 非ルートユーザーに切り替え
+USER rails
+
+# デフォルトのコマンド
+CMD ["bash"]
