@@ -59,4 +59,4 @@ group :test do
 end
 
 # Foremanを追加
-gem 'foreman'
+gem "foreman"
