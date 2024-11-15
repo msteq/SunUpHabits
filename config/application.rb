@@ -22,7 +22,7 @@ module SunUpHabits
     # in config/environments, which are processed later.
     #
     # タイムゾーンを日本標準時に設定
-    config.time_zone = 'Tokyo'
+    config.time_zone = "Tokyo"
 
     # Active Recordにもタイムゾーンを適用
     config.active_record.default_timezone = :local

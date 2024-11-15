@@ -4,8 +4,7 @@ Rails.application.routes.draw do
 
   # Deviseのルーティングをカスタムコントローラーで設定
   devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    registrations: "users/registrations",
+    sessions: "users/sessions"
   }
-
 end
