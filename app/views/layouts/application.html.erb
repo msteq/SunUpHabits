@@ -4,7 +4,7 @@
 <head>
   <title><%= content_for(:title) || "Sun Up Habits" %></title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -21,6 +21,13 @@
 <body>
   <!-- ヘッダーを表示 -->
   <%= render "shared/header" %>
+
+  <!-- フラッシュメッセージの表示 -->
+  <% flash.each do |key, message| %>
+  <div class="flash <%= key %>">
+    <%= message %>
+  </div>
+  <% end %>
 
   <!-- メインコンテンツ -->
   <%= yield %>
