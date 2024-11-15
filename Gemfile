@@ -60,3 +60,6 @@ end
 
 # Foremanを追加
 gem "foreman"
+
+# Deviseを追加
+gem "devise"

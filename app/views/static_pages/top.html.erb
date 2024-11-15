@@ -12,8 +12,8 @@
 
     <!-- ボタン -->
     <div class="flex space-x-6">
-      <button class="btn bg-[#FFA500] text-lg text-black hover:bg-[#C28742] px-6 py-3 rounded border-none">新規登録</button>
-      <button class="btn bg-[#FFA500] text-lg text-black hover:bg-[#C28742] px-6 py-3 rounded border-none">ログイン</button>
+      <%= link_to "新規登録", new_user_registration_path, class: "btn bg-[#FFA500] text-lg text-black hover:bg-[#C28742] px-6 py-3 rounded border-none" %>
+      <%= link_to "ログイン", new_user_session_path, class: "btn bg-[#FFA500] text-lg text-black hover:bg-[#C28742] px-6 py-3 rounded border-none" %>
     </div>
   </div>
 </main>

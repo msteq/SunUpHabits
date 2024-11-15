@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* フラッシュメッセージのスタイル */
+.flash {
+  @apply p-4 mb-4 rounded;
+}
+
+.flash.notice {
+  @apply bg-green-100 text-green-800;
+}
+
+.flash.alert {
+  @apply bg-red-100 text-red-800;
+}
+
+.flash.success {
+  @apply bg-green-100 text-green-800;
+}
+
+.flash.error {
+  @apply bg-red-100 text-red-800;
+}
