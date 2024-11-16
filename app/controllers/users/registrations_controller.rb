@@ -11,7 +11,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
+    super do |resource|
+      if resource.persisted?
+        # ユーザー登録が成功した場合
+        flash[:notice] = "ユーザー登録が完了しました"
+        redirect_to root_path and return
+      else
+        # ユーザー登録が失敗した場合
+        flash[:alert] = "ユーザー登録に失敗しました"
+        render :new, status: :unprocessable_entity and return
+      end
+    end
   end
 
   # GET /resource/edit
