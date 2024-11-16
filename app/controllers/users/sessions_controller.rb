@@ -10,12 +10,26 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    super
+    super do |resource|
+      if resource.valid?
+        # ログインが成功した場合
+        flash[:notice] = "ログインしました"
+        redirect_to root_path and return
+      else
+        # ログインが失敗した場合
+        flash[:alert] = "ログインに失敗しました"
+        render :new, status: :unprocessable_entity and return
+      end
+    end
   end
 
   # DELETE /resource/sign_out
   def destroy
-    super
+    super do
+      # ログアウトが成功した場合
+      flash[:notice] = "ログアウトしました"
+      redirect_to root_path and return
+    end
   end
 
   # protected
