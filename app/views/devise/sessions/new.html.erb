@@ -2,7 +2,11 @@
   <div class="w-full max-w-md p-8 bg-white rounded shadow">
     <h2 class="text-2xl font-bold text-black mb-6 text-center">ログイン</h2>
 
+    <!-- エラーメッセージの表示 -->
+    <%= render "devise/shared/error_messages", resource: resource %>
+
     <%= form_with(model: resource, as: resource_name, url: session_path(resource_name), local: true) do |form| %>
+
     <div class="mb-4">
       <%= form.label "メールアドレス", class: "block text-gray-700" %>
       <%= form.email_field :email, class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded" %>
@@ -19,9 +23,7 @@
     <% end %>
 
     <div class="mt-4 text-center">
-      <%= link_to "新規登録はこちら", new_user_registration_path, class: "text-sm text-gray-600 hover:text-[#C28742]" %>
-      <br>
-      <%= link_to "パスワードを忘れた方はこちら", new_user_password_path, class: "text-sm text-gray-600 hover:text-[#C28742]" %>
+      <%= render "devise/shared/links" %>
     </div>
   </div>
 </div>
