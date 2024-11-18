@@ -1,15 +1,23 @@
 <% if resource.errors.any? %>
-  <div id="error_explanation" data-turbo-cache="false">
-    <h2>
-      <%= I18n.t("errors.messages.not_saved",
-                 count: resource.errors.count,
-                 resource: resource.class.model_name.human.downcase)
-       %>
-    </h2>
-    <ul>
-      <% resource.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+<div id="error_explanation" data-turbo-cache="false">
+  <ul class="list-disc list-inside text-red mb-4">
+    <% 
+        # ユーザー名に関連するエラーメッセージを抽出
+        name_errors = resource.errors.full_messages.select { |msg| msg.start_with?('ユーザー名') }
+        # メールアドレスに関連するエラーメッセージを抽出
+        email_errors = resource.errors.full_messages.select { |msg| msg.start_with?('メールアドレス') }
+        # 残りのエラーメッセージを抽出
+        other_errors = resource.errors.full_messages.reject { |msg| msg.start_with?('ユーザー名') || msg.start_with?('メールアドレス') }
+      %>
+    <% name_errors.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+    <% email_errors.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+    <% other_errors.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
 <% end %>

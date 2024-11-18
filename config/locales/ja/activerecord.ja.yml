@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+    attributes:
+      user:
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認用）"
+        name: "ユーザー名"
+    errors:
+      messages:
+        blank: "を入力してください。"
+        invalid: "は有効ではありません。"
+        too_short: "は%{count}文字以上で入力してください。"
+        confirmation: "と%{attribute}の入力が一致しません。"
+        taken: "は既に存在します。"

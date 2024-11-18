@@ -27,6 +27,15 @@ module SunUpHabits
     # Active Recordにもタイムゾーンを適用
     config.active_record.default_timezone = :local
 
+    # デフォルトのロケールを日本語に設定
+    config.i18n.default_locale = :ja
+
+    # 使用可能なロケールを日本語に設定
+    config.i18n.available_locales = [ :ja ]
+
+    # 日本語のロケールファイルをロードパスに追加
+    config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.yml")]
+
     # config.eager_load_paths << Rails.root.join("extras")
     config.generators do |g|
       g.skip_routes true

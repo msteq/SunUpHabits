@@ -107,6 +107,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.12.1)
+      devise (>= 4.9.0)
     drb (2.2.1)
     erubi (1.13.0)
     foreman (0.88.1)
@@ -202,6 +204,9 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
+    rails-i18n (7.0.10)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 8)
     railties (7.2.1)
       actionpack (= 7.2.1)
       activesupport (= 7.2.1)
@@ -308,12 +313,14 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise
+  devise-i18n
   foreman
   jbuilder
   jsbundling-rails
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.2.1)
+  rails-i18n
   rubocop-rails-omakase
   selenium-webdriver
   sprockets-rails
