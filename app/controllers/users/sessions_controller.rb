@@ -14,7 +14,7 @@ class Users::SessionsController < Devise::SessionsController
       if resource.valid?
         # ログインが成功した場合
         flash[:notice] = "ログインしました"
-        redirect_to root_path and return
+        redirect_to my_habits_path and return
       else
         # ログインが失敗した場合
         flash[:alert] = "ログインに失敗しました"

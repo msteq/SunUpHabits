@@ -15,7 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if resource.persisted?
         # ユーザー登録が成功した場合
         flash[:notice] = "ユーザー登録が完了しました"
-        redirect_to root_path and return
+        redirect_to my_habits_path and return
       else
         # ユーザー登録が失敗した場合
         flash[:alert] = "ユーザー登録に失敗しました"
