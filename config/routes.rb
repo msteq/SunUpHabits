@@ -7,4 +7,10 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     sessions: "users/sessions"
   }
+
+  # Habitsのルーティング
+  resources :habits, only: [ :new, :create, :index ]
+
+  # マイ習慣画面へのルートを設定
+  get "my_habits", to: "habits#index", as: "my_habits"
 end
