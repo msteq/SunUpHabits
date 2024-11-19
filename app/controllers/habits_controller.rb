@@ -12,9 +12,9 @@ class HabitsController < ApplicationController
   def create
     @habit = current_user.habits.build(habit_params)
     if @habit.save
-      redirect_to my_habits_path, notice: '新しい習慣を登録しました。'
+      redirect_to my_habits_path, notice: "新しい習慣を登録しました。"
     else
-      flash.now[:alert] = '習慣の登録に失敗しました。入力内容を確認してください。'
+      flash.now[:alert] = "習慣の登録に失敗しました。入力内容を確認してください。"
       render :new
     end
   end

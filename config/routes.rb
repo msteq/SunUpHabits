@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   }
 
   # Habitsのルーティング
-  resources :habits, only: [:new, :create, :index]
+  resources :habits, only: [ :new, :create, :index ]
 
   # マイ習慣画面へのルートを設定
-  get 'my_habits', to: 'habits#index', as: 'my_habits'
+  get "my_habits", to: "habits#index", as: "my_habits"
 end
