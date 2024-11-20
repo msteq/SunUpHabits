@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   }
 
   # Habitsのルーティング
-  resources :habits, only: [ :new, :create, :index ]
+  resources :habits do
+    member do
+      post "achieve"
+      post "not_achieve"
+    end
+  end
 
   # マイ習慣画面へのルートを設定
   get "my_habits", to: "habits#index", as: "my_habits"
