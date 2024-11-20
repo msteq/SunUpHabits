@@ -1,6 +1,6 @@
 class HabitsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_habit, only: [:show, :edit, :update, :destroy, :achieve, :not_achieve]
+  before_action :set_habit, only: [ :show, :edit, :update, :destroy, :achieve, :not_achieve ]
 
   def index
     @habits = current_user.habits
@@ -23,7 +23,7 @@ class HabitsController < ApplicationController
   def show
     @progresses = @habit.progresses.order(date: :desc)
     @current_date = Date.today
-    @recent_achieved = @habit.progresses.where(status: '達成').order(date: :desc).first&.date
+    @recent_achieved = @habit.progresses.where(status: "達成").order(date: :desc).first&.date
 
     # 連続達成日数の計算
     @continuous_days = @habit.continuous_days
@@ -40,28 +40,28 @@ class HabitsController < ApplicationController
 
   def update
     if @habit.update(habit_params)
-      redirect_to habit_path(@habit), notice: '習慣が更新されました。'
+      redirect_to habit_path(@habit), notice: "習慣が更新されました。"
     else
-      flash.now[:alert] = '習慣の更新に失敗しました。入力内容を確認してください。'
+      flash.now[:alert] = "習慣の更新に失敗しました。入力内容を確認してください。"
       render :edit
     end
   end
 
   def destroy
     @habit.destroy
-    redirect_to my_habits_path, notice: '習慣が削除されました。'
+    redirect_to my_habits_path, notice: "習慣が削除されました。"
   end
 
   # 達成アクション
   def achieve
-    @habit.progresses.create(status: '達成', date: Date.today)
-    redirect_to habit_path(@habit), notice: '本日を達成として記録しました。'
+    @habit.progresses.create(status: "達成", date: Date.today)
+    redirect_to habit_path(@habit), notice: "本日を達成として記録しました。"
   end
 
   # 未達成アクション
   def not_achieve
-    @habit.progresses.create(status: '未達成', date: Date.today)
-    redirect_to habit_path(@habit), notice: '本日を未達成として記録しました。'
+    @habit.progresses.create(status: "未達成", date: Date.today)
+    redirect_to habit_path(@habit), notice: "本日を未達成として記録しました。"
   end
 
   private

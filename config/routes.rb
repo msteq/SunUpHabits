@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   # Habitsのルーティング
   resources :habits do
     member do
-      post 'achieve'
-      post 'not_achieve'
+      post "achieve"
+      post "not_achieve"
     end
   end
 

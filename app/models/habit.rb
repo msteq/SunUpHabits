@@ -15,7 +15,7 @@ class Habit < ApplicationRecord
 
     loop do
       progress = progresses.find_by(date: date)
-      break unless progress&.status == '達成'
+      break unless progress&.status == "達成"
 
       days += 1
       date -= 1.day

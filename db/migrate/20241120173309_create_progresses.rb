@@ -9,6 +9,6 @@ class CreateProgresses < ActiveRecord::Migration[7.2]
     end
 
     # 同じ習慣・日付での重複を防ぐためにインデックスを追加
-    add_index :progresses, [:habit_id, :date], unique: true
+    add_index :progresses, [ :habit_id, :date ], unique: true
   end
 end
