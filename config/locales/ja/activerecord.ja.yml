@@ -2,12 +2,17 @@ ja:
   activerecord:
     models:
       user: "ユーザー"
+      habit: "習慣"
     attributes:
       user:
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "パスワード（確認用）"
         name: "ユーザー名"
+      habit:
+        title: "習慣名"
+        goal: "目標設定"
+        start_date: "開始日"
     errors:
       messages:
         blank: "を入力してください。"
