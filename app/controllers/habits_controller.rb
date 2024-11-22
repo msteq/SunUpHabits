@@ -3,7 +3,7 @@ class HabitsController < ApplicationController
   before_action :set_habit, only: [ :show, :edit, :update, :destroy, :achieve, :not_achieve ]
 
   def index
-    @habits = current_user.habits
+    @habits = current_user.habits.includes(:progresses)
   end
 
   def new
@@ -55,13 +55,27 @@ class HabitsController < ApplicationController
   # 達成アクション
   def achieve
     @habit.progresses.create(status: "達成", date: Date.today)
-    redirect_to habit_path(@habit), notice: "本日を達成として記録しました。"
+
+    respond_to do |format|
+      if params[:from] == "detail"
+        format.html { redirect_to habit_path(@habit), notice: "本日を達成として記録しました。" }
+      else
+        format.html { redirect_to my_habits_path, notice: "本日を達成として記録しました。" }
+      end
+    end
   end
 
   # 未達成アクション
   def not_achieve
     @habit.progresses.create(status: "未達成", date: Date.today)
-    redirect_to habit_path(@habit), notice: "本日を未達成として記録しました。"
+
+    respond_to do |format|
+      if params[:from] == "detail"
+        format.html { redirect_to habit_path(@habit), notice: "本日を未達成として記録しました。" }
+      else
+        format.html { redirect_to my_habits_path, notice: "本日を未達成として記録しました。" }
+      end
+    end
   end
 
   private

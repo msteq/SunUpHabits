@@ -24,12 +24,17 @@
     <!-- 進捗情報 -->
     <div class="mb-4">
       <!-- 連続達成日数 -->
-      <% if @continuous_days > 0 %>
-      <p class="text-sm font-bold text-black mb-4"><%= @continuous_days %>日連続達成中！</p>
-      <% elsif @recent_achieved.present? %>
-      <p class="text-sm font-bold text-black mb-4">直近で達成したのは <%= (Date.today - @recent_achieved).to_i %>日前です。</p>
+      <% @continuous_days = @habit.continuous_days %>
+      <% if @continuous_days > 1 %>
+      <p class="text-sm font-bold text-black mb-2"><%= @continuous_days %>日連続達成中！</p>
+      <% elsif @continuous_days == 1 %>
+      <p class="text-sm font-bold text-black mb-2">本日達成しました！</p>
       <% else %>
-      <p class="text-sm font-bold text-black mb-4">まだ達成記録がありません。</p>
+      <% if @recent_achieved.present? %>
+      <p class="text-sm font-bold text-black mb-2">直近で達成したのは <%= (Date.today - @recent_achieved).to_i %>日前です。</p>
+      <% else %>
+      <p class="text-sm font-bold text-black mb-2">まだ達成記録がありません。</p>
+      <% end %>
       <% end %>
 
       <!-- 短期目標と進捗率 -->
@@ -48,10 +53,10 @@
     <div class="flex justify-center gap-4 mt-4">
       <% if @today_progress.nil? %>
       <!-- 達成ボタン -->
-      <%= button_to '達成', achieve_habit_path(@habit), method: :post, class: "bg-green-300 hover:bg-green-500 text-black rounded w-24 h-10" %>
+      <%= button_to '達成', achieve_habit_path(@habit, from: 'detail'), method: :post, class: "bg-green-300 hover:bg-green-500 text-black rounded w-24 h-10" %>
 
       <!-- 未達成ボタン -->
-      <%= button_to '未達成', not_achieve_habit_path(@habit), method: :post, class: "bg-gray-300 hover:bg-gray-500 text-black rounded w-24 h-10" %>
+      <%= button_to '未達成', not_achieve_habit_path(@habit, from: 'detail'), method: :post, class: "bg-gray-300 hover:bg-gray-500 text-black rounded w-24 h-10" %>
       <% elsif @today_progress.status == '未達成' %>
       <!-- 未達成ボタンが押された後のメッセージ -->
       <p class="text-gray-500 italic">本日は記録済みです。次の記録は明日以降可能です。</p>
