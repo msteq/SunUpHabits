@@ -1,7 +1,7 @@
 class Habit < ApplicationRecord
-  # Userとの関連付け
   belongs_to :user
   has_many :progresses, dependent: :destroy
+  has_many :posts, dependent: :destroy
 
   # バリデーションの設定
   validates :title, presence: true, length: { maximum: 255 }
