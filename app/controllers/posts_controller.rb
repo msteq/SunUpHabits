@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_habit, only: [:new, :create]
+  before_action :set_habit, only: [ :new, :create ]
 
   def index
     @posts = current_user.posts.includes(:habit).order(created_at: :desc)
