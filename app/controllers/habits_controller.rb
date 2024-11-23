@@ -57,11 +57,7 @@ class HabitsController < ApplicationController
     @habit.progresses.create(status: "達成", date: Date.today)
 
     respond_to do |format|
-      if params[:from] == "detail"
-        format.html { redirect_to habit_path(@habit), notice: "本日を達成として記録しました。" }
-      else
-        format.html { redirect_to my_habits_path, notice: "本日を達成として記録しました。" }
-      end
+      format.html { redirect_to new_post_path(habit_id: @habit.id), notice: "本日を達成として記録しました！感じたことをシェアしましょう！" }
     end
   end
 

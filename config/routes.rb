@@ -18,4 +18,7 @@ Rails.application.routes.draw do
 
   # マイ習慣画面へのルートを設定
   get "my_habits", to: "habits#index", as: "my_habits"
+
+  # Postsのルーティングを追加
+  resources :posts, only: [:index, :new, :create]
 end
