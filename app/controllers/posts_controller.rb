@@ -3,7 +3,8 @@ class PostsController < ApplicationController
   before_action :set_habit, only: [ :new, :create ]
 
   def index
-    @posts = current_user.posts.includes(:habit).order(created_at: :desc)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result.includes(:user).order(created_at: :desc)
   end
 
   def new
