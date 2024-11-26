@@ -5,7 +5,7 @@
 
     <% if @habits.any? %>
     <!-- グリッドレイアウト -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div class="grid grid-cols-2 gap-6">
       <% @habits.each do |habit| %>
       <!-- カード全体をリンクで囲む -->
       <%= link_to habit_path(habit), class: "bg-white p-4 rounded shadow-lg hover:shadow-2xl hover:bg-gray-100 cursor-pointer relative block transition-shadow duration-300 transform hover:scale-105" do %>
