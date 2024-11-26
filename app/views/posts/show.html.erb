@@ -14,7 +14,7 @@
         <!-- ユーザー名と投稿内容 -->
         <div class="flex flex-col space-y-1 mb-2">
           <span class="text-lg font-bold text-black pl-2"><%= @user.name %></span>
-          <p class="text-base leading-6 text-gray-700"><%= @post.content.gsub("\n", "<br>").html_safe %></p>
+          <p class="text-base leading-6 text-gray-700"><%= simple_format(@post.content) %></p>
         </div>
       </div>
 
