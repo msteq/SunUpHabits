@@ -7,6 +7,22 @@ class PostsController < ApplicationController
     @posts = @q.result.includes(:user).order(created_at: :desc)
   end
 
+  def show
+    @post = Post.find(params[:id])
+    @user = @post.user
+    @habit = @post.habit
+    @progress_rate = @habit.progress_rate
+
+    # サンプルコメントデータ
+    @comments = [
+      { user_name: "ユーザー1", content: "すごいですね！自分も頑張ります！", created_at: 2.hours.ago },
+      { user_name: "ユーザー2", content: "頑張ってください！応援しています！", created_at: 1.hour.ago }
+    ]
+
+    # サンプルいいね数
+    @likes = 5
+  end
+
   def new
     @post = current_user.posts.build
     @habit = @habit
