@@ -13,13 +13,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super do |resource|
       if resource.persisted?
-        # ユーザー登録が成功した場合
-        flash[:notice] = "ユーザー登録が完了しました"
-        redirect_to my_habits_path and return
       else
         # ユーザー登録が失敗した場合
-        flash[:alert] = "ユーザー登録に失敗しました"
-        render :new, status: :unprocessable_entity and return
+        flash[:alert] = I18n.t("devise.registrations.sign_up_failed")
+        render :new and return
       end
     end
   end
@@ -49,6 +46,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
+
+  def after_sign_up_path_for(resource)
+    my_habits_path
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params

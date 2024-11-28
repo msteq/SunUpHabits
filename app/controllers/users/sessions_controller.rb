@@ -10,29 +10,25 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    super do |resource|
-      if resource.valid?
-        # ログインが成功した場合
-        flash[:notice] = "ログインしました"
-        redirect_to my_habits_path and return
-      else
-        # ログインが失敗した場合
-        flash[:alert] = "ログインに失敗しました"
-        render :new, status: :unprocessable_entity and return
-      end
-    end
+    super
   end
 
   # DELETE /resource/sign_out
   def destroy
-    super do
-      # ログアウトが成功した場合
-      flash[:notice] = "ログアウトしました"
-      redirect_to root_path and return
-    end
+    super
   end
 
-  # protected
+  protected
+
+  # ログイン後のリダイレクト先を指定
+  def after_sign_in_path_for(resource)
+    my_habits_path
+  end
+
+  # ログアウト後のリダイレクト先を指定
+  def after_sign_out_path_for(resource_or_scope)
+    root_path
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
