@@ -4,11 +4,7 @@
     <!-- 編集・削除リンク -->
     <div class="absolute top-4 right-4 flex space-x-4">
       <%= link_to '編集', edit_habit_path(@habit), class: "text-blue-500 hover:text-blue-700 text-sm" %>
-      <%= button_to '削除', habit_path(@habit), method: :delete, data: {
-        controller: 'confirm',
-        confirm_message_value: '本当に削除しますか？',
-        action: 'confirm#confirm'
-      }, class: "text-red-500 hover:text-red-700 text-sm bg-transparent border-0" %>
+      <%= link_to '削除', habit_path(@habit), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "text-red-500 hover:text-red-700 text-sm" %>
     </div>
 
     <!-- タイトル -->

@@ -24,8 +24,14 @@ class Habit < ApplicationRecord
     days
   end
 
+  # 直近30日間で達成した日数を計算するメソッド
+  def achieved_days_last_30_days
+    start_date = Date.today - 29.days
+    progresses.where(status: "達成", date: start_date..Date.today).count
+  end
+
   # 進捗率を計算するメソッド
   def progress_rate
-    (continuous_days.to_f / 30 * 100).round
+    (achieved_days_last_30_days.to_f / 30 * 100).round
   end
 end
