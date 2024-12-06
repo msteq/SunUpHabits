@@ -1,5 +1,4 @@
 class Progress < ApplicationRecord
-  # Habitとの関連付け
   belongs_to :habit
 
   # バリデーションの設定

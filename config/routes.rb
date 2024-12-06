@@ -20,5 +20,7 @@ Rails.application.routes.draw do
   get "my_habits", to: "habits#index", as: "my_habits"
 
   # Postsのルーティングを追加
-  resources :posts, only: [ :index, :show, :new, :create ]
+  resources :posts, only: [ :index, :show, :new, :create ] do
+    resources :comments, only: [ :create, :destroy ]
+  end
 end

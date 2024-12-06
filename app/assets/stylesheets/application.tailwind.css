@@ -4,7 +4,7 @@
 
 /* フラッシュメッセージのスタイル */
 .flash {
-  @apply p-4 mb-4 rounded;
+  @apply p-4 rounded;
 }
 
 .flash.notice {

@@ -49,30 +49,43 @@ class HabitsController < ApplicationController
 
   def destroy
     @habit.destroy
-    redirect_to my_habits_path, notice: "習慣が削除されました。"
+    redirect_to my_habits_path, status: :see_other, notice: "習慣が削除されました。"
   end
 
   # 達成アクション
   def achieve
-    @habit.progresses.create(status: "達成", date: Date.today)
+    @progress = @habit.progresses.build(status: "達成", date: Date.today)
 
-    respond_to do |format|
-      format.html { redirect_to new_post_path(habit_id: @habit.id), notice: "本日を達成として記録しました！感じたことをシェアしましょう！" }
+    if @progress.save
+      respond_to do |format|
+        format.html { redirect_to new_post_path(habit_id: @habit.id), notice: "本日を達成として記録しました！感じたことをシェアしましょう！" }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to habit_path(@habit), alert: "達成の記録に失敗しました。既に達成済みか確認してください。" }
+      end
     end
   end
 
   # 未達成アクション
   def not_achieve
-    @habit.progresses.create(status: "未達成", date: Date.today)
+    @progress = @habit.progresses.build(status: "未達成", date: Date.today)
 
-    respond_to do |format|
-      if params[:from] == "detail"
-        format.html { redirect_to habit_path(@habit), notice: "本日を未達成として記録しました。" }
-      else
-        format.html { redirect_to my_habits_path, notice: "本日を未達成として記録しました。" }
+    if @progress.save
+      respond_to do |format|
+        if params[:from] == "detail"
+          format.html { redirect_to habit_path(@habit), notice: "本日を未達成として記録しました。" }
+        else
+          format.html { redirect_to my_habits_path, notice: "本日を未達成として記録しました。" }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to habit_path(@habit), alert: "未達成の記録に失敗しました。既に記録済みか確認してください。" }
       end
     end
   end
+
 
   private
 

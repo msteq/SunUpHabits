@@ -13,13 +13,8 @@ class PostsController < ApplicationController
     @habit = @post.habit
     @progress_rate = @habit.progress_rate
 
-    # サンプルコメントデータ
-    @comments = [
-      { user_name: "ユーザー1", content: "すごいですね！自分も頑張ります！", created_at: 2.hours.ago },
-      { user_name: "ユーザー2", content: "頑張ってください！応援しています！", created_at: 1.hour.ago }
-    ]
+    @comments = @post.comments.includes(:user).order(created_at: :desc)
 
-    # サンプルいいね数
     @likes = 5
   end
 
