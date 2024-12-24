@@ -19,8 +19,9 @@ Rails.application.routes.draw do
   # マイ習慣画面へのルートを設定
   get "my_habits", to: "habits#index", as: "my_habits"
 
-  # Postsのルーティングを追加
+  # Postsのルーティング
   resources :posts, only: [ :index, :show, :new, :create ] do
     resources :comments, only: [ :create, :destroy ]
+    resources :likes, only: [ :create, :destroy ]
   end
 end

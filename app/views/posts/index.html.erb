@@ -15,8 +15,8 @@
     <div class="space-y-4">
       <% @posts.each do |post| %>
       <!-- カードの内容 -->
-      <%= link_to post_path(post), class: "block bg-white px-3 pt-3 pb-2 rounded shadow-lg hover:bg-gray-100 max-w-md mx-auto" do %>
-      <div class="flex">
+      <div class="bg-white px-3 pt-3 pb-2 rounded shadow-lg hover:shadow-2xl hover:bg-gray-100 relative block transition-shadow duration-300 transform hover:scale-105 max-w-md mx-auto">
+        <%= link_to post_path(post), class: "flex" do %>
         <!-- プロフィールアイコン -->
         <div class="rounded-full bg-gray-300 w-12 h-12 mr-3 flex items-center justify-center">
           <img src="<%= asset_path('default_icon.png') %>" alt="プロフィール画像" class="rounded-full w-12 h-12">
@@ -26,29 +26,26 @@
           <span class="text-lg font-semibold text-black pl-2"><%= post.user.name %></span>
           <p class="text-sm text-gray-700"><%= post.content.gsub("\n", "<br>").html_safe %></p>
         </div>
-      </div>
+        <% end %>
 
-      <!-- コメント・ハートアイコン・作成日時 -->
-      <div class="flex justify-between items-center">
-        <!-- コメントアイコンとハートアイコン -->
-        <div class="flex space-x-4 pl-4">
-          <!-- コメントアイコン -->
-          <span class="text-sm text-black flex items-center">
-            <span class="fa-regular fa-comment text-gray-700 mr-1" aria-hidden="true"></span>
-            コメント
-          </span>
-          <!-- ハートアイコン -->
-          <span class="text-sm text-black flex items-center">
-            <span class="fa-regular fa-heart text-gray-700 mr-1" aria-hidden="true"></span>
-            いいね
+        <!-- コメント・ハートアイコン・作成日時 -->
+        <div class="flex justify-between items-center">
+          <!-- コメントアイコンとハートアイコン -->
+          <div class="flex space-x-4 pl-4">
+            <!-- コメントアイコン -->
+            <span class="text-sm text-black flex items-center">
+              <span class="fa-regular fa-comment text-gray-700 mr-1" aria-hidden="true"></span>
+              コメント
+            </span>
+            <!-- ハートアイコン -->
+            <%= render partial: "posts/like_button", locals: { post: post } %>
+          </div>
+          <!-- 作成日時 -->
+          <span class="text-xs text-gray-500">
+            <%= post.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
           </span>
         </div>
-        <!-- 作成日時 -->
-        <span class="text-xs text-gray-500">
-          <%= post.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
-        </span>
       </div>
-      <% end %>
       <% end %>
     </div>
     <% else %>

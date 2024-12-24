@@ -31,16 +31,14 @@
 
       <!-- コメントと「いいね」情報 -->
       <div class="flex justify-between items-center">
-        <!-- コメント情報 -->
         <div class="flex items-center space-x-4">
+          <!-- コメント情報 -->
           <span class="text-sm text-black flex items-center">
             <span class="fa-regular fa-comment text-gray-700 mr-1"></span>
             コメント
           </span>
-          <span class="text-sm text-black flex items-center">
-            <span class="fa-regular fa-heart text-gray-700 mr-1"></span>
-            いいね
-          </span>
+          <!-- いいね情報 -->
+          <%= render partial: "posts/like_button", locals: { post: @post } %>
         </div>
 
         <!-- 作成日時 -->
