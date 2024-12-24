@@ -29,21 +29,21 @@
         <% end %>
 
         <!-- コメント・ハートアイコン・作成日時 -->
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between">
           <!-- コメントアイコンとハートアイコン -->
-          <div class="flex space-x-4 pl-4">
+          <div class="flex">
             <!-- コメントアイコン -->
-            <span class="text-sm text-black flex items-center">
-              <span class="fa-regular fa-comment text-gray-700 mr-1" aria-hidden="true"></span>
-              コメント
-            </span>
+            <%= link_to post_path(post), class: "text-sm pl-4 pr-2 text-black flex items-center hover:text-orange-500" do %>
+            <span class="fa-regular fa-comment text-gray-700 mr-1" aria-hidden="true"></span>
+            <span>コメント</span>
+            <% end %>
             <!-- ハートアイコン -->
             <%= render partial: "posts/like_button", locals: { post: post } %>
           </div>
           <!-- 作成日時 -->
-          <span class="text-xs text-gray-500">
-            <%= post.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
-          </span>
+          <%= link_to post_path(post), class: "text-xs pl-24 pt-0.5 text-gray-500" do %>
+          <%= post.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+          <% end %>
         </div>
       </div>
       <% end %>
