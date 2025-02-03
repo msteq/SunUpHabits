@@ -1,0 +1,9 @@
+<div id="liked_posts" class="space-y-4">
+  <% if liked_posts.any? %>
+  <% liked_posts.each do |post| %>
+  <%= render partial: "posts/liked_post", locals: { post: post } %>
+  <% end %>
+  <% else %>
+  <p class="text-sm text-gray-600 mt-2">まだいいねした投稿はありません。</p>
+  <% end %>
+</div>
