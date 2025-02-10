@@ -1,6 +1,6 @@
 <span id="like_button_<%= post.id %>" class="text-sm text-black flex items-center">
   <% if user_signed_in? && post.likes.exists?(user: current_user) %>
-  <%= button_to post_like_path(post, current_user.likes.find_by(post: post)), method: :delete, remote: true, class: "flex items-center pl-2 space-x-1 hover:text-orange-500" do %>
+  <%= button_to post_like_path(post, current_user.likes.find_by(post: post)), method: :delete, data: { turbo_method: :delete }, class: "flex items-center pl-2 space-x-1 hover:text-orange-500" do %>
   <i class="fa-solid fa-heart text-red-500"></i>
   <% if post.likes.count > 0 %>
   <span class="ml-1"><%= post.likes.count %></span>
@@ -8,7 +8,7 @@
   <span>いいね</span>
   <% end %>
   <% else %>
-  <%= button_to post_likes_path(post), method: :post, remote: true, class: "flex items-center pl-2 pr-2.5 space-x-1 hover:text-orange-500" do %>
+  <%= button_to post_likes_path(post), method: :post, data: { turbo_method: :post }, class: "flex items-center pl-2 pr-2.5 space-x-1 hover:text-orange-500" do %>
   <i class="fa-regular fa-heart text-gray-700"></i>
   <% if post.likes.count > 0 %>
   <span class="ml-1"><%= post.likes.count %></span>

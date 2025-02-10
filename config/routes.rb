@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     sessions: "users/sessions"
   }
 
+  # マイページ画面へのルートを設定
+  get "my_page", to: "users#show", as: :my_page
+
   # Habitsのルーティング
   resources :habits do
     member do

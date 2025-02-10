@@ -1,0 +1,31 @@
+<div id="<%= dom_id(post, :liked_post) %>" class="bg-white px-3 pt-3 pb-2 rounded shadow-lg hover:shadow-2xl hover:bg-gray-100 relative block transition-shadow duration-300 transform hover:scale-105 max-w-md mx-auto">
+  <%= link_to post_path(post), class: "flex" do %>
+  <!-- プロフィールアイコン -->
+  <div class="rounded-full bg-gray-300 w-12 h-12 mr-3 flex items-center justify-center">
+    <img src="<%= asset_path('default_icon.png') %>" alt="プロフィール画像" class="rounded-full w-12 h-12">
+  </div>
+  <!-- ユーザー名と投稿内容 -->
+  <div class="flex flex-col space-y-1 mb-2">
+    <span class="text-lg font-semibold text-black pl-2"><%= post.user.name %></span>
+    <p class="text-sm text-gray-700"><%= post.content.gsub("\n", "<br>").html_safe %></p>
+  </div>
+  <% end %>
+
+  <!-- コメント・ハートアイコン・作成日時 -->
+  <div class="flex justify-between">
+    <!-- コメントアイコンとハートアイコン -->
+    <div class="flex">
+      <!-- コメントアイコン -->
+      <%= link_to post_path(post), class: "text-sm pl-4 pr-2 text-black flex items-center hover:text-orange-500" do %>
+      <span class="fa-regular fa-comment text-gray-700 mr-1" aria-hidden="true"></span>
+      <span>コメント</span>
+      <% end %>
+      <!-- ハートアイコン -->
+      <%= render partial: "posts/like_button", locals: { post: post } %>
+    </div>
+    <!-- 作成日時 -->
+    <%= link_to post_path(post), class: "text-xs pl-24 pt-0.5 text-gray-500" do %>
+    <%= post.created_at.strftime('%Y年%m月%d日 %H時%M分') %>
+    <% end %>
+  </div>
+</div>
