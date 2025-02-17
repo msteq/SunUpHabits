@@ -1,43 +1,55 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="min-h-screen bg-[#f8f2ec] flex items-center justify-center">
+  <div class="w-full max-w-md p-8 bg-white rounded shadow-lg">
+    <!-- タイトル -->
+    <h2 class="text-2xl font-bold text-black text-center mb-6">プロフィール編集</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <!-- エラーメッセージの表示 -->
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <!-- フォーム開始（multipart: true でファイルアップロードを有効にする） -->
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true, data: { turbo: false } }) do |f| %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+    <!-- プロフィール画像 -->
+    <div class="mb-4" data-controller="profile-image-preview">
+      <%= f.label :profile_image, "プロフィール画像", class: "block text-gray-700" %>
+      <% if resource.profile_image.attached? %>
+      <%= image_tag resource.profile_image,
+        data: { "profile-image-preview-target" => "preview" },
+        class: "w-20 h-20 object-cover object-top rounded-full border border-gray-300 mb-2" %>
+      <% else %>
+      <%= image_tag asset_path('default_icon.png'),
+        alt: "プロフィール画像",
+        data: { "profile-image-preview-target" => "preview" },
+        class: "w-20 h-20 rounded-full border border-gray-300 mb-2" %>
+      <% end %>
+      <%= f.file_field :profile_image,
+        accept: "image/jpeg,image/png",
+        class: "block",
+        data: { "action" => "change->profile-image-preview#previewImage",
+                "profile-image-preview-target" => "fileInput" } %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+    <!-- ユーザー名 -->
+    <div class="mb-4">
+      <%= f.label :name, "ユーザー名", class: "block text-gray-700" %>
+      <%= f.text_field :name, placeholder: resource.name, class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded" %>
+    </div>
+
+    <!-- メールアドレス -->
+    <div class="mb-6">
+      <%= f.label :email, "メールアドレス", class: "block text-gray-700" %>
+      <%= f.email_field :email, placeholder: resource.email, class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded" %>
+    </div>
+
+    <!-- 保存ボタン -->
+    <div class="flex justify-center">
+      <%= f.submit "保存", class: "btn bg-[#FFA500] text-black text-lg hover:bg-[#C28742] w-full h-10 rounded shadow" %>
+    </div>
+
+    <div class="mt-4 text-center">
+      <%= link_to "マイページへ戻る", my_page_path, class: "text-sm text-gray-600 hover:text-[#C28742]" %>
+    </div>
     <% end %>
+    <!-- フォーム終了 -->
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+</div>
