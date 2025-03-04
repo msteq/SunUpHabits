@@ -8,23 +8,23 @@
     <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), local: true, data: { turbo: false }) do |form| %>
 
     <div class="mb-4">
-      <%= form.label "ユーザー名", for: "user_name", class: "block text-gray-700" %>
-      <%= form.text_field :name, id: "user_name", class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded" %>
+      <%= form.label :name, "ユーザー名", class: "block text-gray-700" %>
+      <%= form.text_field :name, class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded" %>
     </div>
 
     <div class="mb-4">
-      <%= form.label "メールアドレス", for: "user_email", class: "block text-gray-700" %>
-      <%= form.email_field :email, id: "user_email", class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded" %>
+      <%= form.label :email, "メールアドレス", class: "block text-gray-700" %>
+      <%= form.email_field :email, class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded" %>
     </div>
 
     <div class="mb-4">
-      <%= form.label "パスワード", for: "user_password", class: "block text-gray-700" %>
-      <%= form.password_field :password, id: "user_password", class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded" %>
+      <%= form.label :password, "パスワード", class: "block text-gray-700" %>
+      <%= form.password_field :password, class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded" %>
     </div>
 
     <div class="mb-6">
-      <%= form.label "パスワード（確認）", for: "user_password_confirmation", class: "block text-gray-700" %>
-      <%= form.password_field :password_confirmation, id: "user_password_confirmation", class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded" %>
+      <%= form.label :password_confirmation, "パスワード（確認）", class: "block text-gray-700" %>
+      <%= form.password_field :password_confirmation, class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded" %>
     </div>
 
     <div class="flex items-center justify-between">
