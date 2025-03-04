@@ -1,16 +1,20 @@
-<h2>Forgot your password?</h2>
+<div class="min-h-screen bg-[#f8f2ec] flex items-center justify-center">
+  <div class="w-full max-w-md p-8 bg-white rounded shadow-lg">
+    <h2 class="text-2xl font-bold text-black mb-6 text-center">パスワードの再設定</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_with(model: resource, as: resource_name, url: password_path(resource_name), local: true, data: { turbo: false }) do |form| %>
+    <div class="mb-6">
+      <%= form.label :email, "メールアドレス", class: "block text-gray-700" %>
+      <%= form.email_field :email, class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="flex justify-center">
+      <%= form.submit "送信", class: "btn bg-[#FFA500] text-black text-lg hover:bg-[#C28742] w-32 rounded shadow" %>
+    </div>
+    <% end %>
+
+    <div class="mt-4 text-center">
+      <%= link_to "ログイン画面へ戻る", new_user_session_path, class: "text-sm text-gray-600 hover:text-[#C28742]" %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

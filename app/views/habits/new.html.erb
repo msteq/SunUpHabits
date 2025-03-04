@@ -7,18 +7,18 @@
 
     <%= form_with(model: @habit, local: true, data: { turbo: false }) do |form| %>
     <div class="mb-4">
-      <%= form.label :title, "習慣名 (例: 「朝のジョギング」 「読書」 「瞑想」 など)", for: 'habit_title', class: "block text-gray-700" %>
-      <%= form.text_field :title, id: 'habit_title', class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded", maxlength: 255 %>
+      <%= form.label :title, "習慣名 (例: 「朝のジョギング」 「読書」 「瞑想」 など)", class: "block text-gray-700" %>
+      <%= form.text_field :title, class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded", maxlength: 255 %>
     </div>
 
     <div class="mb-4">
-      <%= form.label :goal, "目標設定 (例: 「夏までに2Kg痩せる！」 「30日間連続で実行する」 など)", for: 'habit_goal', class: "block text-gray-700" %>
-      <%= form.text_field :goal, id: 'habit_goal', class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded", maxlength: 255 %>
+      <%= form.label :goal, "目標設定 (例: 「夏までに2Kg痩せる！」 「30日間連続で実行する」 など)", class: "block text-gray-700" %>
+      <%= form.text_field :goal, class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded", maxlength: 255 %>
     </div>
 
     <div class="mb-4">
-      <%= form.label :start_date, "開始日", for: 'habit_start_date', class: "block text-gray-700" %>
-      <%= form.date_field :start_date, id: 'habit_start_date', class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded", value: Date.today %>
+      <%= form.label :start_date, "開始日", class: "block text-gray-700" %>
+      <%= form.date_field :start_date, class: "w-full p-3 text-black bg-white border border-gray-300 focus:bg-blue-100 focus:text-black focus:border-gray-500 rounded", value: Date.today %>
     </div>
 
     <div class="flex items-center justify-center mt-6">
