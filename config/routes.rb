@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   root "static_pages#top"
-
   get "terms", to: "static_pages#terms", as: :terms
+  get "privacy", to: "static_pages#privacy", as: :privacy
 
   devise_for :users, controllers: {
     registrations: "users/registrations",
