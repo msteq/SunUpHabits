@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root "static_pages#top"
   get "terms", to: "static_pages#terms", as: :terms
   get "privacy", to: "static_pages#privacy", as: :privacy
+  get "contact", to: "static_pages#contact", as: :contact
 
   devise_for :users, controllers: {
     registrations: "users/registrations",
