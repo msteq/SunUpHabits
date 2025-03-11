@@ -23,6 +23,16 @@
     <% end %>
 
     <div class="mt-4 text-center">
+      OR
+    </div>
+
+    <div class="mt-4 flex justify-center">
+      <%= button_to user_google_oauth2_omniauth_authorize_path, data: { turbo: false } do %>
+      <%= image_tag "google_sign_in.png", class: "h-12 w-auto shadow" %>
+      <% end %>
+    </div>
+
+    <div class="mt-4 text-center">
       <%= render "devise/shared/links" %>
     </div>
   </div>
