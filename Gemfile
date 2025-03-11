@@ -74,6 +74,6 @@ gem "rails-i18n"
 
 gem "ransack"
 
-gem 'omniauth-rails_csrf_protection'
+gem "omniauth-rails_csrf_protection"
 
 gem "omniauth-google-oauth2"
