@@ -45,6 +45,8 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "dotenv-rails"
 end
 
 group :development do
@@ -71,3 +73,7 @@ gem "devise-i18n"
 gem "rails-i18n"
 
 gem "ransack"
+
+gem 'omniauth-rails_csrf_protection'
+
+gem "omniauth-google-oauth2"
