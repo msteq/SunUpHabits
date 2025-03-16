@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get "my_habits", to: "habits#index", as: "my_habits"
 
   resources :posts, only: [ :index, :show, :new, :create ] do
+    get :autocomplete, on: :collection
     resources :comments, only: [ :create, :destroy ]
     resources :likes, only: [ :create, :destroy ]
   end

@@ -1,0 +1,5 @@
+<% results.each do |user| %>
+<li class="py-2 px-3 m-1 rounded text-sm text-gray-600 hover:bg-blue-200 cursor-pointer transition-colors duration-150" role="option" data-autocomplete-value="<%= user.name %>" data-autocomplete-label="<%= user.name %>">
+  <%= user.name %>
+</li>
+<% end %>
