@@ -7,6 +7,19 @@ class PostsController < ApplicationController
     @posts = @q.result.includes(:user).order(created_at: :desc)
   end
 
+  def autocomplete
+    term = params[:q].to_s.strip
+    return render html: "".html_safe if term.length < 2
+
+    users = User.joins(:posts)
+            .where("users.name ILIKE ?", "%#{term}%")
+            .distinct
+            .order(:name)
+            .limit(10)
+
+    render partial: "autocomplete", locals: { results: users }
+  end
+
   def show
     @post = Post.find(params[:id])
     @user = @post.user
