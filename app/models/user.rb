@@ -12,6 +12,8 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
   validates :name, presence: true
+  validates :email, uniqueness: { case_sensitive: false }
+  before_save { email.downcase! }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

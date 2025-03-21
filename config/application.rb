@@ -30,8 +30,8 @@ module SunUpHabits
     # デフォルトのロケールを日本語に設定
     config.i18n.default_locale = :ja
 
-    # 使用可能なロケールを日本語に設定
-    config.i18n.available_locales = [ :ja ]
+    # 使用可能なロケールを日本語、英語に設定
+    config.i18n.available_locales = [ :ja, :en ]
 
     # 日本語のロケールファイルをロードパスに追加
     config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.yml")]
