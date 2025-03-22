@@ -11,26 +11,26 @@ RSpec.describe User, type: :model do
     it 'nameが空の場合、無効であること' do
       subject.name = nil
       expect(subject).to be_invalid
-      expect(subject.errors[:name]).to include("を入力してください。")
+      expect(subject.errors[:name]).to include('を入力してください。')
     end
 
     it 'emailが空の場合、無効であること' do
       subject.email = nil
       expect(subject).to be_invalid
-      expect(subject.errors[:email]).to include("を入力してください。")
+      expect(subject.errors[:email]).to include('を入力してください。')
     end
 
     it '重複したemailの場合、無効であること（大文字小文字を区別しない）' do
       create(:user, email: subject.email.upcase)
       expect(subject).to be_invalid
-      expect(subject.errors[:email]).to include("は既に存在します。")
+      expect(subject.errors[:email]).to include('は既に存在します。')
     end
 
     it 'パスワードが6文字未満なら無効であること' do
       subject.password = '12345'
       subject.password_confirmation = '12345'
       expect(subject).to be_invalid
-      expect(subject.errors[:password]).to include("は6文字以上で入力してください。")
+      expect(subject.errors[:password]).to include('は6文字以上で入力してください。')
     end
   end
 
