@@ -1,7 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Habit, type: :model do
-  let(:habit) { build(:habit) }
+  let(:fixed_today) { Date.new(2025, 3, 20) }
+  let(:habit) { build(:habit, start_date: fixed_today) }
+
+  before do
+    allow(Date).to receive(:today).and_return(fixed_today)
+  end
 
   context 'バリデーション' do
     it 'title、goal、start_dateがあれば有効であること' do
@@ -46,30 +51,25 @@ RSpec.describe Habit, type: :model do
   end
 
   context 'インスタンスメソッド' do
-    describe '#continuous_days' do
-      let(:habit) { create(:habit) }
-      let(:today) { Date.new(2025, 3, 20) } # テストで使う日付を明示的に固定する
+    let(:habit) { create(:habit, start_date: fixed_today) }
 
+    describe '#continuous_days' do
       before do
-        create(:progress, habit: habit, date: today, status: '達成')
-        create(:progress, habit: habit, date: today - 1.day, status: '達成')
-        create(:progress, habit: habit, date: today - 2.days, status: '達成')
-        create(:progress, habit: habit, date: today - 3.days, status: '未達成')
+        create(:progress, habit: habit, date: fixed_today, status: '達成')
+        create(:progress, habit: habit, date: fixed_today - 1.day, status: '達成')
+        create(:progress, habit: habit, date: fixed_today - 2.days, status: '達成')
+        create(:progress, habit: habit, date: fixed_today - 3.days, status: '未達成')
       end
 
       it '連続達成日数を正しく計算すること' do
-        allow(Date).to receive(:today).and_return(today)
         expect(habit.continuous_days).to eq(3)
       end
     end
 
     describe '#achieved_days_last_30_days' do
-      let(:habit) { create(:habit) }
-
       before do
-        # 過去30日のうち、10日間を達成状態にする
         (0..9).each do |i|
-          create(:progress, habit: habit, date: Date.today - i.days, status: '達成')
+          create(:progress, habit: habit, date: fixed_today - i.days, status: '達成')
         end
       end
 
@@ -79,17 +79,14 @@ RSpec.describe Habit, type: :model do
     end
 
     describe '#progress_rate' do
-      let(:habit) { create(:habit) }
-
       before do
-        # 直近30日間のうち15日達成にする
         (0..14).each do |i|
-          create(:progress, habit: habit, date: Date.today - i.days, status: '達成')
+          create(:progress, habit: habit, date: fixed_today - i.days, status: '達成')
         end
       end
 
       it '進捗率を正しく計算すること' do
-        expect(habit.progress_rate).to eq(50) # 15/30日で50%
+        expect(habit.progress_rate).to eq(50)
       end
     end
   end

@@ -3,7 +3,6 @@ class Habit < ApplicationRecord
   has_many :progresses, dependent: :destroy
   has_many :posts, dependent: :destroy
 
-  # バリデーションの設定
   validates :title, presence: true, length: { maximum: 255 }
   validates :goal, presence: true, length: { maximum: 255 }
   validates :start_date, presence: true
