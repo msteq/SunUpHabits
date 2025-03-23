@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   subject { build(:user) }
 
-  context 'バリデーション' do
+  describe 'バリデーション' do
     it 'name、email、passwordがあれば有効であること' do
       expect(subject).to be_valid
     end
@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context 'アソシエーション' do
+  describe 'アソシエーション' do
     it { should have_many(:habits).dependent(:destroy) }
     it { should have_many(:posts).dependent(:destroy) }
     it { should have_many(:comments).dependent(:destroy) }
@@ -43,7 +43,7 @@ RSpec.describe User, type: :model do
     it { should have_one_attached(:profile_image) }
   end
 
-  context '.from_omniauthメソッドのテスト' do
+  describe '.from_omniauthメソッド' do
     let(:auth) do
       OmniAuth::AuthHash.new(
         provider: 'google_oauth2',
@@ -74,7 +74,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context '.ransackable_attributesメソッドのテスト' do
+  describe '.ransackable_attributesメソッド' do
     it '検索可能な属性を正しく返すこと' do
       expect(User.ransackable_attributes).to match_array %w[name email id created_at updated_at]
     end
