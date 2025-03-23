@@ -8,7 +8,7 @@ RSpec.describe Habit, type: :model do
     allow(Date).to receive(:today).and_return(fixed_today)
   end
 
-  context 'バリデーション' do
+  describe 'バリデーション' do
     it 'title、goal、start_dateがあれば有効であること' do
       expect(habit).to be_valid
     end
@@ -44,13 +44,13 @@ RSpec.describe Habit, type: :model do
     end
   end
 
-  context 'アソシエーション' do
+  describe 'アソシエーション' do
     it { should belong_to(:user) }
     it { should have_many(:progresses).dependent(:destroy) }
     it { should have_many(:posts).dependent(:destroy) }
   end
 
-  context 'インスタンスメソッド' do
+  describe 'インスタンスメソッド' do
     let(:habit) { create(:habit, start_date: fixed_today) }
 
     describe '#continuous_days' do

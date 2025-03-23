@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Progress, type: :model do
   let(:progress) { build(:progress) }
 
-  context 'バリデーション' do
+  describe 'バリデーション' do
     it 'habit、date、statusがあれば有効であること' do
       expect(progress).to be_valid
     end
@@ -51,7 +51,7 @@ RSpec.describe Progress, type: :model do
     end
   end
 
-  context 'アソシエーション' do
+  describe 'アソシエーション' do
     it { should belong_to(:habit) }
   end
 end
