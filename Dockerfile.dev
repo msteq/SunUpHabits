@@ -15,6 +15,8 @@ RUN apt-get update -qq \
     libpq-dev \
     nodejs \
     vim \
+    chromium \
+    chromium-driver \
   && rm -rf /var/lib/apt/lists/*
 
 # Yarnの公式リポジトリを追加して最新バージョンをインストール
