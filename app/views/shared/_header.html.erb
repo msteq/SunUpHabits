@@ -1,7 +1,9 @@
-<header class="bg-[#FFA500] p-4 flex justify-between items-center">
+<header class="bg-[#FFA500] p-3 flex justify-between items-center">
   <!-- ロゴ -->
-  <div class="text-2xl font-bold text-black ml-4">
-    SunUpHabits
+  <div class="ml-10">
+    <%= link_to root_path do %>
+    <%= image_tag "logo_header.png", alt: "SunUpHabits ロゴ", class: "h-10 w-auto" %>
+    <% end %>
   </div>
 
   <!-- ナビゲーションリンク -->
