@@ -5,7 +5,7 @@
     <!-- エラーメッセージの表示 -->
     <%= render "devise/shared/error_messages", resource: resource %>
 
-    <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), local: true, data: { turbo: false }) do |form| %>
+    <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), local: true, html: { novalidate: true }, data: { turbo: false }) do |form| %>
 
     <div class="mb-4">
       <%= form.label :name, "ユーザー名", class: "block text-gray-700" %>
