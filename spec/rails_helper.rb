@@ -9,6 +9,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 # return unless Rails.env.test?
 require 'rspec/rails'
 require 'capybara/rspec'
+Capybara.default_host = 'http://localhost'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -48,9 +49,14 @@ RSpec.configure do |config|
 
   config.around(:each, type: :model)   { |ex| ActiveRecord::Base.transaction { ex.run; raise ActiveRecord::Rollback } }
 
-  config.before(:each, type: :system) do
-    driven_by :selenium_chrome_headless
+  config.before(:each, type: :system) { driven_by :rack_test }
+  config.before(:each, type: :system, js: true) { driven_by :selenium_chrome_headless }
+
+  config.before(:suite) do
+    ActionMailer::Base.delivery_method = :test
+    ActionMailer::Base.perform_deliveries = true
   end
+
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
