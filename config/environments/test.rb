@@ -50,6 +50,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "localhost" }
 
   config.hosts << "localhost"
+  config.hosts << "127.0.0.1"
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
