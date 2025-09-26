@@ -13,6 +13,8 @@ ja:
         title: "習慣名"
         goal: "目標設定"
         start_date: "開始日"
+      post:
+        content: 投稿内容
     errors:
       messages:
         blank: "を入力してください。"
