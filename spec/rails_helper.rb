@@ -10,6 +10,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'capybara/rspec'
 Capybara.default_host = 'http://localhost'
+Capybara.default_max_wait_time = ENV['CI'] ? 5 : 2
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
