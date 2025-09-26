@@ -6,8 +6,8 @@ RSpec.describe 'ログアウト', type: :system, js: true do
   it 'ログアウトするとトップへリダイレクトされ、未ログイン用のヘッダーが表示される' do
     sign_in_as(user)
 
-    accept_confirm('本当にログアウトしますか？') do
-      within('header nav') { click_link 'ログアウト' }
+    within('header nav') do
+      accept_confirm { click_link 'ログアウト' }
     end
 
     within('header nav') do

@@ -71,9 +71,7 @@ RSpec.describe '習慣', type: :system do
     it '詳細から削除でき、一覧に戻る' do
       visit habit_path(habit)
 
-      accept_confirm('本当に削除しますか？') do
-        click_link '削除'
-      end
+      accept_confirm { click_link '削除' }
 
       expect(page).to have_current_path(my_habits_path, ignore_query: true)
       expect(page).to have_content('習慣が削除されました。')
