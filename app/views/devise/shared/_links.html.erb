@@ -9,11 +9,3 @@
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
 <%= link_to "パスワードを忘れた方はこちら", new_password_path(resource_name), class: "text-sm text-gray-600 hover:text-[#C28742]" %><br />
 <% end %>
-
-<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-<%= link_to "確認メールを受け取っていませんか？", new_confirmation_path(resource_name), class: "text-sm text-gray-600 hover:text-[#C28742]" %><br />
-<% end %>
-
-<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-<%= link_to "ロック解除の手順を受け取っていませんか？", new_unlock_path(resource_name), class: "text-sm text-gray-600 hover:text-[#C28742]" %><br />
-<% end %>
