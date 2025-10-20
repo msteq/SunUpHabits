@@ -70,10 +70,8 @@ group :test do
   gem "selenium-webdriver"
 end
 
-# Foremanを追加
 gem "foreman"
 
-# Deviseを追加
 gem "devise"
 
 gem "devise-i18n"
@@ -85,3 +83,5 @@ gem "ransack"
 gem "omniauth-rails_csrf_protection"
 
 gem "omniauth-google-oauth2"
+
+gem "aws-sdk-s3"
