@@ -74,6 +74,7 @@ SunUpHabitsは、朝に取り組む習慣を**短い操作で記録し、互い�
 | フロントエンド | Ruby on Rails 7.2.1, Hotwire（Turbo / Stimulus） |
 | CSSフレームワーク | TailwindCSS, DaisyUI |
 | データベース | PostgreSQL |
+| ファイルサーバー | AWS S3 |
 | 認証 | Devise, OmniAuth (Google OAuth2) |
 | 検索 | Ransack |
 | 環境構築 | Docker |
@@ -85,4 +86,4 @@ SunUpHabitsは、朝に取り組む習慣を**短い操作で記録し、互い�
 https://www.figma.com/design/izVMYDOrBbco6wC9yqtoxc/%E7%84%A1%E9%A1%8C?node-id=0-1&m=dev&t=rusuccY7ZeOl5VgO-1
 
 ## ER図
-https://gyazo.com/354a1cea07d6bb879e73189cfb1feb97
+https://drive.google.com/file/d/1xAAetXq2nLOnhoxRIti_OjzThKr0i113/view?usp=sharing
