@@ -8,7 +8,7 @@
   <span>いいね</span>
   <% end %>
   <% else %>
-  <%= button_to post_likes_path(post), method: :post, data: { turbo_method: :post }, class: "flex items-center pl-2 pr-2.5 space-x-1 hover:text-orange-500" do %>
+  <%= button_to post_likes_path(post), method: :post, data: { turbo_method: :post }, class: "flex items-center pl-2 space-x-1 hover:text-orange-500" do %>
   <i class="fa-regular fa-heart text-gray-700"></i>
   <% if post.likes.count > 0 %>
   <span class="ml-1"><%= post.likes.count %></span>
