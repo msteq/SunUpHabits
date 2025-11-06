@@ -75,8 +75,9 @@ RSpec.describe 'プロフィール編集', type: :system do
     it '確認して退会するとトップへ遷移しログアウト状態になる' do
       visit edit_user_registration_path
 
-      page.execute_script('window.confirm = () => true')
-      click_link '退会'
+      accept_confirm('本当に退会しますか？この操作は元に戻せません。') do
+        click_button '退会'
+      end
 
       expect(page).to have_current_path(root_path, ignore_query: true)
       expect(page).to have_content(I18n.t('devise.registrations.destroyed'))
@@ -92,8 +93,9 @@ RSpec.describe 'プロフィール編集', type: :system do
     it '確認ダイアログでキャンセルすると退会されない' do
       visit edit_user_registration_path
 
-      page.execute_script('window.confirm = () => false')
-      click_link '退会'
+      dismiss_confirm('本当に退会しますか？この操作は元に戻せません。') do
+        click_button '退会'
+      end
 
       expect(page).to have_current_path(edit_user_registration_path, ignore_query: true)
 
