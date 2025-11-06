@@ -42,7 +42,7 @@
     <% end %>
 
     <div class="mt-4 text-center">
-      <%= link_to "退会", registration_path(resource_name), data: { turbo_method: :delete, turbo_confirm: "本当に退会しますか？この操作は元に戻せません。" }, class: "btn bg-red-500 text-black text-lg hover:bg-red-700 w-full h-10 rounded shadow" %>
+      <%= button_to "退会", registration_path(resource_name), method: :delete, data: { turbo_confirm: "本当に退会しますか？この操作は元に戻せません。" }, class: "btn bg-red-500 text-black text-lg hover:bg-red-700 w-full h-10 rounded shadow" %>
     </div>
 
     <div class="mt-4 text-center">

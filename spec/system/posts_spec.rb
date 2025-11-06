@@ -72,11 +72,19 @@ RSpec.describe '投稿', type: :system do
 
     it '自分のコメントを削除できる', js: true do
       visit post_path(post_record)
-      fill_in 'comment_content', with: '消すコメント'
-      click_button '送信'
+
+      within('form#new_comment') do
+        fill_in 'comment_content', with: '消すコメント'
+        click_button '送信'
+      end
+
       expect(page).to have_content('消すコメント')
 
-      accept_confirm { click_link '削除' }
+      accept_confirm do
+        within('#comment_list') do
+          find('[data-testid="delete-comment"]').click
+        end
+      end
 
       expect(page).to have_current_path(post_path(post_record), ignore_query: true)
       expect(page).to have_content('コメントを削除しました。')
