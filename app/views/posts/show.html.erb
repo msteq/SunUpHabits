@@ -53,10 +53,10 @@
     </div>
 
     <!-- コメントリスト -->
-    <div class="mb-6">
+    <div id="comment_list" class="mb-6">
       <h3 class="text-lg font-semibold text-black mb-2">コメント</h3>
       <% if @comments.any? %>
-      <% @post.comments.order(created_at: :desc).each do |comment| %>
+      <% @comments.each do |comment| %>
       <div class="flex">
         <!-- 左側：ユーザー名とアイコン -->
         <div class="flex flex-col items-center mr-3">
@@ -76,7 +76,7 @@
 
             <!-- 削除ボタン -->
             <% if comment.user == current_user %>
-            <%= link_to '削除', post_comment_path(@post, comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "text-red-500 hover:text-red-700 text-sm" %>
+            <%= link_to '削除', post_comment_path(@post, comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, 'data-testid' => 'delete-comment', class: "text-red-500 hover:text-red-700 text-sm" %>
             <% end %>
           </div>
 
@@ -94,9 +94,9 @@
     <div class="mb-6">
       <h3 class="text-lg font-semibold text-black mb-2">コメントを追加</h3>
       <div>
-        <%= form_with(model: [@post, @post.comments.build], local: true) do |form| %>
+        <%= form_with(model: [@post, @post.comments.build], local: true, id: 'new_comment') do |form| %>
         <div class="flex items-end space-x-2">
-          <%= form.text_area :content, placeholder: "コメントを入力", class: "flex-1 w-full bg-white p-4 rounded shadow-sm bg-[#fff9e8] border border-gray-300 text-base text-black", maxlength: 1000 %>
+          <%= form.text_area :content, placeholder: "コメントを入力", id: "comment_content", class: "flex-1 w-full bg-white p-4 rounded shadow-sm bg-[#fff9e8] border border-gray-300 text-base text-black", maxlength: 1000 %>
           <%= form.submit "送信", class: "btn bg-[#FFA500] text-black text-lg hover:bg-[#C28742] px-4 py-2 rounded shadow-lg mt-2" %>
         </div>
         <% end %>
